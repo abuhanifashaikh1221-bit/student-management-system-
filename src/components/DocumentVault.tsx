@@ -23,24 +23,24 @@ export default function DocumentVault({ students }: DocumentVaultProps) {
   );
 
   return (
-    <div className="p-8 space-y-8">
-      <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+    <div className="p-4 md:p-8 space-y-8">
+      <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Document Vault</h1>
-          <p className="text-slate-500 font-medium">Secure storage and verification of student records.</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight leading-tight">Document Vault</h1>
+          <p className="text-sm md:text-base text-slate-500 font-medium">Secure storage and verification of student records.</p>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="bg-white border border-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-3 shadow-sm group focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500 transition-all">
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+          <div className="bg-white border border-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-3 shadow-sm group focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500 transition-all w-full sm:flex-1 md:w-auto">
             <Search className="w-5 h-5 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
             <input 
               type="text" 
-              placeholder="Search by student or doc..." 
+              placeholder="Search documents..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-transparent border-none outline-none text-sm text-slate-900 placeholder:text-slate-400 w-64"
+              className="bg-transparent border-none outline-none text-sm text-slate-900 placeholder:text-slate-400 w-full md:w-48 xl:w-64"
             />
           </div>
-          <button className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition-all active:scale-95">
+          <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition-all active:scale-95 text-sm whitespace-nowrap">
             <Upload className="w-5 h-5" />
             Upload New
           </button>

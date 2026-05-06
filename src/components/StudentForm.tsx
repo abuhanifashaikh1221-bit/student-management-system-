@@ -25,11 +25,26 @@ export default function StudentForm({ isOpen, onClose, onSubmit }: StudentFormPr
     status: 'Active' as const,
     attendance: 100,
     cgpa: 8.0,
+    subjects: [] as { subject: string; score: number }[],
+    fees: [] as any[],
+    documents: [] as any[],
+    role: 'Student' as const,
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+    // Pre-populate some defaults if empty
+    const submissionData = {
+      ...formData,
+      subjects: formData.subjects.length > 0 ? formData.subjects : [
+        { subject: 'Foundation Course', score: 85 }
+      ],
+      fees: [
+        { id: 'f_new', type: 'Tuition', amount: 50000, paid: 0, status: 'Pending', dueDate: '2025-12-31' }
+      ],
+      documents: [],
+    };
+    onSubmit(submissionData as Omit<Student, 'id'>);
     onClose();
   };
 

@@ -36,28 +36,28 @@ export default function Attendance({ students, onSave }: AttendanceProps) {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-6">
+    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-6">
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Attendance Tracking</h1>
-          <p className="text-slate-500">Record and monitor student attendance for the daily sessions.</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">Attendance Tracking</h1>
+          <p className="text-sm md:text-base text-slate-500 font-medium">Record and monitor student attendance for the daily sessions.</p>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 bg-white border border-slate-200 px-4 py-2 rounded-xl shadow-sm">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex-1 min-w-[140px] flex items-center gap-2 bg-white border border-slate-200 px-4 py-2.5 rounded-xl shadow-sm">
             <CalendarIcon className="w-4 h-4 text-slate-400" />
             <input 
               type="date" 
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="bg-transparent border-none focus:ring-0 text-sm font-semibold text-slate-700 outline-none"
+              className="bg-transparent border-none focus:ring-0 text-sm font-semibold text-slate-700 outline-none w-full"
             />
           </div>
           <button 
             onClick={handleSave}
-            className="flex items-center gap-2 bg-emerald-600 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg shadow-emerald-600/20 hover:bg-emerald-700 transition-all active:scale-95"
+            className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-emerald-600 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg shadow-emerald-600/20 hover:bg-emerald-700 transition-all active:scale-95 text-sm whitespace-nowrap"
           >
             <Save className="w-5 h-5" />
-            Save Attendance
+            Save Changes
           </button>
         </div>
       </header>

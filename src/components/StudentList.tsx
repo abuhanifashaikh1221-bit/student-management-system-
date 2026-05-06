@@ -142,24 +142,35 @@ export default function StudentList({ students, setStudents }: StudentListProps)
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-6">
+    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-6">
       {/* Header */}
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Student Directory</h1>
-          <p className="text-slate-500 font-medium">Manage and monitor academic performance tracks.</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight leading-tight">Student Directory</h1>
+          <p className="text-sm md:text-base text-slate-500 font-medium">Manage and monitor academic performance tracks.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          {selectedIds.length > 0 && (
+            <motion.button
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              onClick={() => deleteStudents(selectedIds)}
+              className="flex items-center gap-2 bg-red-50 text-red-600 px-4 py-2.5 rounded-xl font-bold border border-red-200 hover:bg-red-100 transition-all active:scale-95 text-sm"
+            >
+              <Trash2 className="w-4 h-4" />
+              <span className="hidden sm:inline">Delete</span> ({selectedIds.length})
+            </motion.button>
+          )}
           <button 
             onClick={exportToCSV}
-            className="flex items-center gap-2 bg-white text-slate-700 px-4 py-2.5 rounded-xl font-bold border border-slate-200 hover:bg-slate-50 transition-all active:scale-95 shadow-sm"
+            className="flex items-center gap-2 bg-white text-slate-700 px-4 py-2.5 rounded-xl font-bold border border-slate-200 hover:bg-slate-50 transition-all active:scale-95 shadow-sm text-sm"
           >
             <Download className="w-4 h-4" />
-            Export CSV
+            <span className="hidden sm:inline">Export</span>
           </button>
           <button 
             onClick={() => setIsFormOpen(true)}
-            className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-all active:scale-95"
+            className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-all active:scale-95 text-sm whitespace-nowrap"
           >
             <Plus className="w-5 h-5" />
             New Student

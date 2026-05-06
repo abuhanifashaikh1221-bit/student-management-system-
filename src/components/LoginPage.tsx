@@ -11,7 +11,9 @@ import { UserRole } from '../types';
 
 export default function LoginPage() {
   const { login } = useAuth();
+  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [role, setRole] = useState<UserRole>('Admin');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -36,14 +38,35 @@ export default function LoginPage() {
               <LogIn className="w-6 h-6" />
             </div>
             <h1 className="text-2xl font-bold">EduStream Portal</h1>
-            <p className="text-slate-400 font-medium">Session 2025-26 Academic Gateway</p>
+            <p className="text-slate-400 font-medium">{isLogin ? 'Sign in to your account' : 'Create a institutional account'}</p>
           </div>
           <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 blur-3xl rounded-full -mr-16 -mt-16" />
         </div>
 
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
+          <div className="flex p-1 bg-slate-100 rounded-2xl gap-1">
+            <button
+              type="button"
+              onClick={() => setIsLogin(true)}
+              className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                isLogin ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              Login
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsLogin(false)}
+              className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                !isLogin ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              Sign Up
+            </button>
+          </div>
+
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">Login Role</label>
+            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">Primary Role</label>
             <div className="grid grid-cols-3 gap-2">
               {(['Admin', 'Teacher', 'Student'] as UserRole[]).map((r) => (
                 <button
@@ -66,6 +89,19 @@ export default function LoginPage() {
           </div>
 
           <div className="space-y-4">
+            {!isLogin && (
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-500 pl-1">Full Name</label>
+                <input
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="e.g. John Doe"
+                  className="w-full bg-slate-50 border border-slate-200 px-5 py-3.5 rounded-2xl text-sm focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all"
+                />
+              </div>
+            )}
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-500 pl-1">Email Address</label>
               <input
@@ -101,7 +137,7 @@ export default function LoginPage() {
               />
             ) : (
               <>
-                Sign In to Dashboard
+                {isLogin ? 'Sign In to Dashboard' : 'Register Account'}
                 <LogIn className="w-5 h-5" />
               </>
             )}

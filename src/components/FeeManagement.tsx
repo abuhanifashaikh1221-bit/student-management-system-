@@ -19,13 +19,13 @@ export default function FeeManagement({ students }: FeeManagementProps) {
   const totalCollected = allFees.reduce((acc, f) => acc + f.paid, 0);
 
   return (
-    <div className="p-8 space-y-8">
-      <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+    <div className="p-4 md:p-8 space-y-8">
+      <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Fee Management</h1>
-          <p className="text-slate-500 font-medium">Track payments, balances, and collection history.</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight leading-tight">Fee Management</h1>
+          <p className="text-sm md:text-base text-slate-500 font-medium">Track payments, balances, and collection history.</p>
         </div>
-        <button className="flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg hover:bg-slate-800 transition-all active:scale-95">
+        <button className="flex items-center justify-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg hover:bg-slate-800 transition-all active:scale-95 text-sm">
           <Receipt className="w-5 h-5" />
           Generate Invoice
         </button>

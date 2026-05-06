@@ -71,4 +71,41 @@ export interface User {
   studentId?: string; // If role is 'Student'
 }
 
-export type ViewType = 'dashboard' | 'students' | 'classes' | 'attendance' | 'fees' | 'documents' | 'hostel-transport' | 'settings';
+export interface PickupPoint {
+  id: string;
+  name: string;
+  time: string;
+}
+
+export interface TransportRoute {
+  id: string;
+  name: string;
+  busNumber: string;
+  driverName: string;
+  driverPhone: string;
+  capacity: number;
+  pickupPoints: PickupPoint[];
+  status: 'Active' | 'Inactive';
+}
+
+export interface Course {
+  id: string;
+  code: string;
+  name: string;
+  department: Department;
+  credits: number;
+  description: string;
+}
+
+export interface ClassSchedule {
+  id: string;
+  courseId: string;
+  courseName: string;
+  teacherName: string;
+  roomNumber: string;
+  day: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
+  time: string;
+  batch: string;
+}
+
+export type ViewType = 'dashboard' | 'students' | 'classes' | 'courses' | 'attendance' | 'fees' | 'documents' | 'hostel-transport' | 'settings';

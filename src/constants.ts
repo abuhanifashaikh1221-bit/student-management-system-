@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Student, User, SubjectScore, FeeRecord, StudentDocument } from './types';
+import { Student, User, SubjectScore, FeeRecord, StudentDocument, Course, TransportRoute, ClassSchedule } from './types';
 
 const generateSubjects = (dept: string): SubjectScore[] => {
   const subjects = dept === 'CS' ? ['Algorithms', 'OS', 'DBMS'] :
@@ -61,7 +61,45 @@ export const MOCK_USERS: User[] = [
   { id: 'u3', name: 'Alex Johnson', email: 'student@edu.com', role: 'Student', studentId: 's1' },
 ];
 
-export const MOCK_CLASSES = [
-  { id: 'c1', name: 'Advanced Mathematics', teacher: 'Dr. Thorne', schedule: 'Mon/Wed 09:00', room: '302', studentsCount: 24 },
-  { id: 'c2', name: 'Data Structures', teacher: 'Prof. Smith', schedule: 'Tue/Thu 11:00', room: '105', studentsCount: 30 },
+export const MOCK_COURSES: Course[] = [
+  { id: 'crs1', code: 'CS101', name: 'Introduction to Programming', department: 'CS', credits: 4, description: 'Basic programming concepts using Python.' },
+  { id: 'crs2', code: 'CS201', name: 'Data Structures and Algorithms', department: 'CS', credits: 4, description: 'Advanced programming, stacks, queues, trees, and logic.' },
+  { id: 'crs3', code: 'EC101', name: 'Digital logic Design', department: 'EC', credits: 3, description: 'Basic circuits and transistors.' },
+  { id: 'crs4', code: 'ME102', name: 'Thermodynamics', department: 'ME', credits: 4, description: 'Laws of thermodynamics and energy systems.' },
+];
+
+export const MOCK_ROUTES: TransportRoute[] = [
+  {
+    id: 'r1',
+    name: 'North Route',
+    busNumber: 'B12-4455',
+    driverName: 'Robert Wilson',
+    driverPhone: '+1-555-0102',
+    capacity: 40,
+    status: 'Active',
+    pickupPoints: [
+      { id: 'p1', name: 'Main Gate', time: '08:00 AM' },
+      { id: 'p2', name: 'Oak Street', time: '08:15 AM' },
+      { id: 'p3', name: 'Park Avenue', time: '08:30 AM' },
+    ]
+  },
+  {
+    id: 'r2',
+    name: 'South Route',
+    busNumber: 'S04-9911',
+    driverName: 'Sarah Smith',
+    driverPhone: '+1-555-0199',
+    capacity: 35,
+    status: 'Active',
+    pickupPoints: [
+      { id: 'p4', name: 'River Dale', time: '07:45 AM' },
+      { id: 'p5', name: 'Central Mall', time: '08:10 AM' },
+    ]
+  }
+];
+
+export const MOCK_CLASSES: ClassSchedule[] = [
+  { id: 'c1', courseId: 'crs1', courseName: 'Introduction to Programming', teacherName: 'Dr. Thorne', roomNumber: '302', day: 'Monday', time: '09:00 AM', batch: 'Batch 2025' },
+  { id: 'c2', courseId: 'crs2', courseName: 'Data Structures', teacherName: 'Prof. Smith', roomNumber: '105', day: 'Tuesday', time: '11:00 AM', batch: 'Batch 2024' },
+  { id: 'c3', courseId: 'crs3', courseName: 'Digital logic Design', teacherName: 'Prof. Alan', roomNumber: '201', day: 'Wednesday', time: '10:00 AM', batch: 'Batch 2025' },
 ];
